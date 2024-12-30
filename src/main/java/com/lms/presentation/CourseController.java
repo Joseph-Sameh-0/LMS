@@ -50,6 +50,9 @@ public class CourseController {
         if (!"Instructor".equals(currentUser.get().getRole())) {
             return ResponseEntity.status(403).body("Access Denied: Access Denied: you are unauthorized");
         }
+        if(courseService.findCourseById(course.getId()) != null){
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Course Already Exists");
+        }
 
         Course newCourse = courseService.createCourse(course);
         String message = "Course " + course.getId() + " \"" + course.getTitle() + "\"" + " created successfully" ;
