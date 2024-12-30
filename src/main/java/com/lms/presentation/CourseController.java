@@ -54,10 +54,10 @@ public class CourseController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Course Already Exists");
         }
 
+        course.setProfid(currentUser.get().getId());
         Course newCourse = courseService.createCourse(course);
         String message = "Course " + course.getId() + " \"" + course.getTitle() + "\"" + " created successfully" ;
         eventPublisher.publishEvent(new NotificationEvent(this, currentUser.get().getId(), message, "EMAIL"));
-        course.setProfid(currentUser.get().getId());
         return ResponseEntity.ok("Course " + newCourse.getId() + " created successfully!");
     }
 
