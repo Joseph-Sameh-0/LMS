@@ -34,7 +34,7 @@ public class NotificationEventListener {
         notificationManager.addNotification(notification);
 
         System.out.println("Notification Event Received:");
-        System.out.println("Student ID: " + event.getUserId());
+        System.out.println("User ID: " + event.getUserId());
         System.out.println("Message: " + event.getMessage());
         System.out.println("Notification Type: " + event.getNotificationType());
 

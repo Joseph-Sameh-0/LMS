@@ -115,9 +115,11 @@ public class NotificationController {
         if (currentUser.isEmpty()) {
             return ResponseEntity.status(404).build();
         }
+
         if (!notificationService.isUserNotification(currentUser.get().getId(), notificationId)) {
             return ResponseEntity.status(403).body("Access Denied: You are unauthorized to mark this notification as read");
         }
+
         try {
             notificationService.markNotificationAsRead(notificationId);
             return ResponseEntity.ok().body("Notification marked as read");
